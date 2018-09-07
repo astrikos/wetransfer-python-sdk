@@ -12,6 +12,7 @@ class Transfer(object):
     def __init__(self, **kwargs):
         self.transfer_id = None
         self.transfer_items = []
+        self.transfer_files = []
         self.client_options = {
             "key": kwargs["key"],
             "token": kwargs["token"],
@@ -66,6 +67,9 @@ class Transfer(object):
         returned_items = res.json()
 
         for index, item in enumerate(returned_items):
+            if item["content_identifier"] == "web_content":
+                continue
+
             kwargs = {
                 "id": item["id"], "transfer_id": self.transfer_id,
                 "client_options": self.client_options,
@@ -73,12 +77,13 @@ class Transfer(object):
                 "multipart_upload_id": item["meta"]["multipart_upload_id"],
             }
             self.transfer_items[index].load_info(**kwargs)
+            self.transfer_files.append(self.transfer_items[index])
 
         return self.upload_items()
 
     def upload_items(self):
         """Uploads each item of the instances items list"""
-        for item in self.transfer_items:
+        for item in self.transfer_files:
             r = item.upload()
             if not r:
                 log = "Failed to upload item {0}".format(item)
