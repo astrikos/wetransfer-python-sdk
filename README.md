@@ -1,7 +1,12 @@
 # WeTransfer Python SDK
 A Python SDK for the WeTransfer's Public API
 ## Installation
-Checkout the repository and inside the repo's root directory use pip to install it to your environment with:
+Use PYPI to install latest stable version:
+```
+pip install wetransfer
+```
+
+Checkout the repository and inside the repo's root directory use pip to install latest version to your environment with:
 ```
 pip install .
 ```
@@ -45,20 +50,22 @@ able to see details for this transfer and access the url that your transfer is a
 
 The full code snippet is as follows:
 ```python
-from wetransfer.items import File
+import sys
+from wetransfer.items import File, Link
 from wetransfer.client import WTApiClient
 
 kwargs = {"key": "<my-very-personal-api-key>"}
 wt_client = WTApiClient(**kwargs)
 
 if not wt_client.authorize():
-    return False
+    sys.exit(0)
 
 transfer = wt_client.create_transfer()
 
-f1 = File("~/test.txt")
+f1 = File("./test.txt")
+l1 = Link("https://wetransfer.com/", "WeTransfer Website")
 
-transfer.add_items([f1])
+transfer.add_items([f1, l1])
 
 print(transfer)
 ```
