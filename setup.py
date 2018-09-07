@@ -9,6 +9,10 @@ exec(open("src/wetransfer/version.py").read())
 # Allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
+# Get proper long description for package
+description = open("README.md").read()
+
+
 setup(
     name="wetransfer",
     version=__version__,
@@ -16,7 +20,9 @@ setup(
     package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=True,
-    description="",
+    description="A Python SDK for WeTransfer's Public API",
+    long_description=description,
+    long_description_content_type='text/markdown',
     url="https://github.com/WeTransfer/wetransfer-python-sdk",
     download_url="https://github.com/WeTransfer/wetransfer-python-sdk",
     author="Andreas Strikos",
@@ -27,11 +33,14 @@ setup(
         "requests>=2.7.0",
     ],
     classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Developers",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-        "Operating System :: POSIX",
-        "Operating System :: Unix",
         "Programming Language :: Python",
         "Programming Language :: Python :: Implementation :: CPython",
+        "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Internet :: WWW/HTTP",
     ],
 )
