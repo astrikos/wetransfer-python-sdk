@@ -138,13 +138,27 @@ class Link(object):
     """
     Class to hold actions and attributes related to a Link type transfer item
     """
-    def __init__(self, url):
+    def __init__(self, url, title):
         self.content_identifier = "web_content"
+        self.local_identifier = url.encode("hex")[-34:]
         self.url = url
+        self.title = title
 
     def serialize(self):
         """Serialize object to needed format from the API"""
         return {
             "content_identifier": self.content_identifier,
+            "local_identifier": self.local_identifier,
+            "meta": {"title": self.title},
             "url": self.url
         }
+
+    def __str__(self):
+        log = (
+            "Transfer item, link type, with title {0}, url {1} and local "
+            "identifier {2}"
+        ).format(
+            self.title, self.url,
+            self.local_identifier
+        )
+        return log
