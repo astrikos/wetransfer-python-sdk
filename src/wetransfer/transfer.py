@@ -111,7 +111,7 @@ class Transfer(object):
             self.transfer_items.append(Link(urls))
         elif isinstance(urls, list):
             for url in urls:
-                self.transfer_items.append(File(url))
+                self.transfer_items.append(Link(url))
 
         return self.add_items()
 
