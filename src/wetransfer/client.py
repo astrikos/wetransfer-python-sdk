@@ -12,6 +12,7 @@ class WTApiClient(object):
 
     def __init__(self, **kwargs):
         self.key = kwargs["key"]
+        self.name = kwargs["name"]
         self.server = kwargs.get("server")
         self.token = None
 
@@ -23,6 +24,7 @@ class WTApiClient(object):
         """
         client_options = {
             "key": self.key,
+            "name": self.name,
             "server": self.server
         }
         res = Authorize(**client_options).create()
@@ -47,6 +49,7 @@ class WTApiClient(object):
         """
         client_options = {
             "key": self.key,
+            "name": self.name,
             "token": self.token,
             "server": self.server
         }
