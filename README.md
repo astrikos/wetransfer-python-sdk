@@ -55,7 +55,8 @@ import sys
 from wetransfer.items import File, Link
 from wetransfer.client import WTApiClient
 
-kwargs = {"key": "<my-very-personal-api-key>"}
+kwargs = {"key":  "<my-very-personal-api-key>",
+          "name": "Andreas' very first transfer from python!"}
 wt_client = WTApiClient(**kwargs)
 
 if not wt_client.authorize():
