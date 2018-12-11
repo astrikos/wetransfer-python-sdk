@@ -18,7 +18,7 @@ As a first step you need to create a client and fill in your board name:
 ```python
 from wetransfer.client import WTApiClient
 
-kwargs = {"key": "<my-very-personal-api-key>"},
+kwargs = {"key":  "<my-very-personal-api-key>"},
           "name": "Andreas' very first transfer from python!"}
 wt_client = WTApiClient(**kwargs)
 ```
@@ -95,7 +95,8 @@ import logging
 logging.basicConfig()
 logging.getLogger("wetransfer-python-sdk").setLevel(logging.DEBUG)
 
-kwargs = {"key": "<my-very-personal-api-key>"}
+kwargs = {"key":  "<my-very-personal-api-key>",
+          "name": "Andreas' very first transfer from python!"}
 wt = WTApiClient(**kwargs)
 ...
 ``` 
