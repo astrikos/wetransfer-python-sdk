@@ -45,6 +45,7 @@ class WTHTTP(HTTPLogger):
     def __init__(self, **kwargs):
         self.url = ""
         self.key = kwargs.get("key")
+        self.name = kwargs.get("name")
         self.token = kwargs.get("token")
         self.server = kwargs.get("server") or "dev.wetransfer.com"
         self.headers = kwargs.get("headers", None)
@@ -153,7 +154,7 @@ class CreateTransfer(WTPost):
         super(CreateTransfer, self).__init__(**kwargs)
 
     def _construct_post_data(self):
-        self.post_data = {"name": "Andreas' very first transfer from python!"}
+        self.post_data = {"name": self.name}
 
     def create(self):
         return self.post()

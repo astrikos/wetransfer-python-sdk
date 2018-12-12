@@ -14,11 +14,12 @@ pip install .
 ## Usage
 **Before starting make sure you have an API key acquired from [Developers Portal](https://developers.wetransfer.com/).**
 
-As a first step you need to create a client:
+As a first step you need to create a client and fill in your board name:
 ```python
 from wetransfer.client import WTApiClient
 
-kwargs = {"key": "<my-very-personal-api-key>"}
+kwargs = {"key":  "<my-very-personal-api-key>"},
+          "name": "Andreas' very first transfer from python!"}
 wt_client = WTApiClient(**kwargs)
 ```
 
@@ -54,7 +55,8 @@ import sys
 from wetransfer.items import File, Link
 from wetransfer.client import WTApiClient
 
-kwargs = {"key": "<my-very-personal-api-key>"}
+kwargs = {"key":  "<my-very-personal-api-key>",
+          "name": "Andreas' very first transfer from python!"}
 wt_client = WTApiClient(**kwargs)
 
 if not wt_client.authorize():
@@ -94,7 +96,8 @@ import logging
 logging.basicConfig()
 logging.getLogger("wetransfer-python-sdk").setLevel(logging.DEBUG)
 
-kwargs = {"key": "<my-very-personal-api-key>"}
+kwargs = {"key":  "<my-very-personal-api-key>",
+          "name": "Andreas' very first transfer from python!"}
 wt = WTApiClient(**kwargs)
 ...
 ``` 
