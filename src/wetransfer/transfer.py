@@ -54,11 +54,7 @@ class Transfer(object):
 
         res = AddItems(**kwargs).create()
 
-        if not res.ok:
-            log = "Failed to add items: {0} to transfer {1}".format(
-                [str(i) for i in self.transfer_items], self.transfer_id
-            )
-            LOGGER.error(log)
+        if not self.validate_add_items_response(res):
             return False
 
         log = "Successfully added items: {0} to transfer {1}".format(
@@ -82,6 +78,26 @@ class Transfer(object):
             self.transfer_files.append(self.transfer_items[index])
 
         return self.upload_items()
+
+    def validate_add_items_response(self, response):
+        if not response.ok:
+            log = "Failed to add items: {0} to transfer {1}".format(
+                [str(i) for i in self.transfer_items], self.transfer_id
+            )
+            LOGGER.error(log)
+            return False
+
+        returned_items = response.json()
+
+        if len(returned_items) != len(self.transfer_items):
+            log = (
+                "Add items API call didn't return same number of items ({0}) "
+                "than what we sent ({1})"
+            ).format(len(returned_items), len(self.transfer_items))
+            LOGGER.error(log)
+            return False
+
+        return True
 
     def upload_items(self):
         """Uploads each item of the instances items list"""
