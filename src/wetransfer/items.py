@@ -54,18 +54,14 @@ class File(object):
         and uploading each of them separetly.
         """
 
-        f = open(self.local_identifier)
-
-        def read_chunk():
-            return f.read(self.CHUNK_SIZE)
-
-        i = 1
-        # Split file into pieces and read sequentially
-        for piece in iter(read_chunk, ''):
-            res = self.upload_part(piece, i)
-            if not res:
-                return False
-            i += 1
+        with open(self.local_identifier) as f:
+            i = 1
+            # Split file into pieces and read sequentially
+            for piece in iter(lambda: f.read(self.CHUNK_SIZE), ''):
+                res = self.upload_part(piece, i)
+                if not res:
+                    return False
+                i += 1
 
         kwargs = {"id": self.id, "client_options": self.client_options}
         res = FinishUpload(**kwargs).create()
