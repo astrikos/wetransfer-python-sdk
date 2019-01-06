@@ -29,6 +29,7 @@ setup(
     author_email="andreas@wetransfer.com",
     maintainer="Andreas Strikos",
     maintainer_email="andreas@wetransfer.com",
+    test_suite="tests",
     install_requires=[
         "requests>=2.7.0",
     ],
