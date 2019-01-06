@@ -12,7 +12,6 @@ class WTApiClient(object):
 
     def __init__(self, **kwargs):
         self.key = kwargs["key"]
-        self.name = kwargs["name"]
         self.server = kwargs.get("server")
         self.token = None
 
@@ -24,7 +23,6 @@ class WTApiClient(object):
         """
         client_options = {
             "key": self.key,
-            "name": self.name,
             "server": self.server
         }
         res = Authorize(**client_options).create()
@@ -41,7 +39,7 @@ class WTApiClient(object):
 
         return True
 
-    def create_transfer(self):
+    def create_transfer(self, transfer_name="WT Transfer"):
         """
         Creates an bare transfer that we will use later to add our items
         and upload them. If creation is successfull it will return a Transfer
@@ -49,7 +47,7 @@ class WTApiClient(object):
         """
         client_options = {
             "key": self.key,
-            "name": self.name,
+            "name": transfer_name,
             "token": self.token,
             "server": self.server
         }

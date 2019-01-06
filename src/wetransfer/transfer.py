@@ -13,9 +13,10 @@ class Transfer(object):
         self.transfer_id = None
         self.transfer_items = []
         self.transfer_files = []
+        self.name = kwargs["name"]
         self.client_options = {
+            "name": self.name,
             "key": kwargs["key"],
-            "name": kwargs["name"],
             "token": kwargs["token"],
             "server": kwargs.get("server"),
         }
