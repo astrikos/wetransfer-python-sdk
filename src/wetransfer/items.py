@@ -1,8 +1,9 @@
 """Module to hold different types of transfer items"""
 import os
+import six
 
-from logger import LOGGER
-from api_requests import GetUploadURL, UploadPart, FinishUpload
+from .logger import LOGGER
+from .api_requests import GetUploadURL, UploadPart, FinishUpload
 
 
 class File(object):

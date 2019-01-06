@@ -4,8 +4,8 @@ our SDK is making. Official docs https://developers.wetransfer.com/documentation
 """
 import requests
 
-from version import __version__
-from logger import LOGGER
+from .version import __version__
+from .logger import LOGGER
 
 
 class HTTPLogger(object):

@@ -1,6 +1,6 @@
-from logger import LOGGER
-from transfer import Transfer
-from api_requests import Authorize
+from .logger import LOGGER
+from .transfer import Transfer
+from .api_requests import Authorize
 
 
 class WTApiClient(object):

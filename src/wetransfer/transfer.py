@@ -1,7 +1,7 @@
 """Module that implements logic related to transfers"""
-from logger import LOGGER
-from items import File, Link
-from api_requests import AddItems, CreateTransfer, FinishUpload
+from .logger import LOGGER
+from .items import File, Link
+from .api_requests import AddItems, CreateTransfer, FinishUpload
 
 
 class Transfer(object):
