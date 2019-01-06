@@ -135,9 +135,15 @@ class Link(object):
     """
     def __init__(self, url, title):
         self.content_identifier = "web_content"
-        self.local_identifier = url.encode("hex")[-34:]
+        self.local_identifier = self._get_hex_repr(url)
         self.url = url
         self.title = title
+
+    def _get_hex_repr(self, url):
+        if six.PY2:
+            return url.encode("hex")[-34:]
+        else:
+            return url.encode("utf-8").hex()[-34:]
 
     def serialize(self):
         """Serialize object to needed format from the API"""
