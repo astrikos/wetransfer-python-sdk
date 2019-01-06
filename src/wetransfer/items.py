@@ -106,10 +106,8 @@ class File(object):
         res = UploadPart(upload_url, part).create()
 
         if not res.ok:
-            log = (
-                "Failed PUT-ing part-number {0} for item id: {1}"
-                "part_number: {2}"
-            ).format(part_number, self.id)
+            log = "Failed PUT-ing part-number {0} for item id: {1}".format(
+                part_number, self.id)
             LOGGER.error(log)
             return False
 
