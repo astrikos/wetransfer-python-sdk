@@ -35,6 +35,10 @@ class WTApiClient(object):
         LOGGER.info(log)
 
         body = res.json()
+        if "token" not in body:
+            LOGGER.error("Expected 'token' in Authorize json response")
+            return False
+
         self.token = str(body["token"])
 
         return True

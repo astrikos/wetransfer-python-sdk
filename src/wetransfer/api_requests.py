@@ -47,7 +47,7 @@ class WTHTTP(HTTPLogger):
         self.key = kwargs.get("key")
         self.token = kwargs.get("token")
         self.server = kwargs.get("server") or "dev.wetransfer.com"
-        self.headers = kwargs.get("headers", None)
+        self.headers = kwargs.get("headers")
 
         default_user_agent = "WT python SDK v{0}".format(__version__)
         self.http_agent = kwargs.get("user_agent") or default_user_agent
@@ -78,7 +78,8 @@ class WTHTTP(HTTPLogger):
         Builds the request's url combining server and url_path
         classes attributes.
         """
-        self.url = "https://{0}{1}".format(self.server, self.url_path)
+        url_path = getattr(self, "url_path", "")
+        self.url = "https://{0}{1}".format(self.server, url_path)
 
 
 class WTGet(WTHTTP):
