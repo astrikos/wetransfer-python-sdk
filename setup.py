@@ -4,13 +4,15 @@ from setuptools import find_packages
 
 
 __version__ = None
-exec(open("src/wetransfer/version.py").read())
+with open("src/wetransfer/version.py", "r") as f:
+    exec(f.read())
 
 # Allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 # Get proper long description for package
-description = open("README.md").read()
+with open("README.md", "r") as f:
+    description = f.read()
 
 
 setup(
