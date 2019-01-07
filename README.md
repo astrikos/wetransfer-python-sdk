@@ -18,8 +18,7 @@ As a first step you need to create a client and fill in your board name:
 ```python
 from wetransfer.client import WTApiClient
 
-kwargs = {"key":  "<my-very-personal-api-key>"},
-          "name": "Andreas' very first transfer from python!"}
+kwargs = {"key":  "<my-very-personal-api-key>"}
 wt_client = WTApiClient(**kwargs)
 ```
 
@@ -30,7 +29,7 @@ wt_client.authorize()
 
 If authorization is successful you should be able to create an new empty transfer
 ```python
-transfer = wt_client.create_transfer()
+transfer = wt_client.create_transfer(transfer_name="My very first Transfer")
 ```
 
 Afterwards you should be able to add items to it
@@ -55,14 +54,13 @@ import sys
 from wetransfer.items import File, Link
 from wetransfer.client import WTApiClient
 
-kwargs = {"key":  "<my-very-personal-api-key>",
-          "name": "Andreas' very first transfer from python!"}
+kwargs = {"key":  "<my-very-personal-api-key>"}
 wt_client = WTApiClient(**kwargs)
 
 if not wt_client.authorize():
     sys.exit(0)
 
-transfer = wt_client.create_transfer()
+transfer = wt_client.create_transfer(transfer_name="My very first Transfer")
 
 f1 = File("./test.txt")
 l1 = Link("https://wetransfer.com/", "WeTransfer Website")
@@ -96,8 +94,7 @@ import logging
 logging.basicConfig()
 logging.getLogger("wetransfer-python-sdk").setLevel(logging.DEBUG)
 
-kwargs = {"key":  "<my-very-personal-api-key>",
-          "name": "Andreas' very first transfer from python!"}
+kwargs = {"key":  "<my-very-personal-api-key>"}
 wt = WTApiClient(**kwargs)
 ...
 ``` 
