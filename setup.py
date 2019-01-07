@@ -34,6 +34,7 @@ setup(
     test_suite="tests",
     install_requires=[
         "requests>=2.7.0",
+        "six"
     ],
     classifiers=[
         "Development Status :: 3 - Alpha",
